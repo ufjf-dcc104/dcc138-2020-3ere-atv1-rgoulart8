@@ -21,12 +21,17 @@
     let dt;
     const k = 180;
     
-    let x = 150;
-    let vx = 0;
-    let ax = 0;
-    let y = 100;
-    let vy = 0;
-    let ay = 0;
+    let p = {
+
+        x : 150,
+        vx : 0,
+        ax : 0,
+        y : 100,
+        vy : 0,
+        ay : 0
+
+    }
+  
     
   
 
@@ -48,14 +53,14 @@
         ctx.fillRect(0,0, canvas.width, canvas.height);
 
         //Controladores 
-        eay = 0.5*(y - ey) - 0.2*evy;
-        eax = 0.5*(x - ex) - 0.2*evx;
+        eay = 0.5*(p.y - ey) - 0.2*evy;
+        eax = 0.5*(p.x - ex) - 0.2*evx;
 
         //Atualiza dinâmica dos estado
-        vx = vx + ax*dt;
-        x = x + vx*dt;
-        vy = vy + ay*dt;
-        y = y + vy*dt;
+        p.vx = p.vx + p.ax*dt;
+        p.x = p.x + p.vx*dt;
+        p.vy = p.vy + p.ay*dt;
+        p.y = p.y + p.vy*dt;
 
         evx = evx + eax*dt;
         ex = ex + evx*dt;
@@ -64,7 +69,7 @@
 
         //Desenha elementos
         ctx.fillStyle = "white";
-        ctx.fillRect(x, y, 20, 20);
+        ctx.fillRect(p.x, p.y, 20, 20);
 
         ctx.fillStyle = "yellow";
         ctx.fillRect(ex, ey, 20, 20);
@@ -87,16 +92,16 @@
         switch (e.key) {
 
             case "ArrowUp":
-                ay = -k;
+                p.ay = -k;
                 break;
             case "ArrowDown":
-                ay = +k;
+                p.ay = +k;
                 break;
             case "ArrowLeft":
-                ax = -k;
+                p.ax = -k;
                 break;
             case "ArrowRight":
-                ax = +k;
+                p.ax = +k;
                 break;
             default:
                 break;
@@ -113,20 +118,20 @@ console.log(e.key);
 switch (e.key) {
 
     case "ArrowUp":
-        vy = 0;
-        ay = 0;
+        p.vy = 0;
+        p.ay = 0;
         break;
     case "ArrowDown":
-        vy = 0;
-        ay = 0;
+        p.vy = 0;
+        p.ay = 0;
         break;
     case "ArrowLeft":
-        vx = 0;
-        ax = 0;
+       p.vx = 0;
+        p.ax = 0;
         break;
     case "ArrowRight":
-        vx = 0;
-        ax = 0;
+        p.vx = 0;
+        p.ax = 0;
         break;
     default:
         break;
