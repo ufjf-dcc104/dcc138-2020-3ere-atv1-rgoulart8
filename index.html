@@ -34,9 +34,9 @@
         ctx.fillStyle = "black";
         ctx.fillRect(0,0, canvas.width, canvas.height);
 
-        //Atualiza estados
+        //Atualiza dinâmica dos estados
         x = x + vx*dt;
-        y = 100 + vy*dt;
+        y = y + vy*dt;
 
         //Desenha elementos
         ctx.fillStyle = "white";
@@ -52,7 +52,27 @@
 
     function teclaPressionada (e) {
 
-        console.log (e.key);
+        //Adiciona controle de velocidades
+
+        console.log(e.key);
+
+        switch (e.key) {
+
+            case "ArrowUp":
+                vy = -20;
+                break;
+            case "ArrowDown":
+                vy = +20;
+                break;
+            case "ArrowLeft":
+                vx = -20;
+                break;
+            case "ArrowRight":
+                vx = +20;
+                break;
+            default:
+                break;
+        }
 
     }
     
