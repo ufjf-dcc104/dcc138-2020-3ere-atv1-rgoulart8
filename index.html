@@ -30,7 +30,7 @@
         ay : 0,
         cor: "blue",
         desenhar: desenhaElemento,
-        mover: moverElemento
+        mover: moverElemento,
     }
 
     let e = {
@@ -42,7 +42,8 @@
         ay: 0,
         cor: "yellow",
         desenhar: desenhaElemento,
-        mover: moverElemento
+        mover: moverElemento,
+        controlar: perseguirAlvo,
     }
      
     
@@ -57,9 +58,8 @@
         ctx.fillRect(0,0, canvas.width, canvas.height);
 
         //Controladores 
-        e.ay = 0.5*(p.y - e.y) - 0.2*e.vy;
-        e.ax = 0.5*(p.x - e.x) - 0.2*e.vx;
-
+        e.controlar(p);
+        
         //Atualiza dinâmica dos estado
         p.mover();
         e.mover();
@@ -84,6 +84,17 @@
         ctx.fillStyle = this.cor;
         ctx.fillRect(this.x, this.y, 20, 20);
         }
+
+    function perseguirAlvo(alvo){
+        this.ay = 0.5*(alvo.y - this.y) - 0.2*this.vy;
+        this.ax = 0.5*(alvo.x - this.x) - 0.2*this.vx;
+
+    }   
+    function evitarAlvo(alvo){
+        this.ay = -0.5*(alvo.y - this.y) - 0.2*this.vy;
+        this.ax = -0.5*(alvo.x - this.x) - 0.2*this.vx;
+
+    }   
     
     addEventListener ("keydown", teclaPressionada);
     addEventListener ("keyup", teclaSolta);
