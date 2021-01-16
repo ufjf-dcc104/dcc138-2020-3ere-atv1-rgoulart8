@@ -20,7 +20,9 @@
     let t0;
     let dt;
     const k = 180;
-    
+
+ //Transforma "personagem (p)" e "inimigo (e)" em estruturas
+
     let p = {
         x : 150,
         vx : 0,
@@ -46,7 +48,8 @@
         controlar: perseguirAlvo,
     }
      
-    
+  //Desenha a tela do programa 
+
     requestAnimationFrame(desenha);
     
     function desenha (t) {
@@ -73,17 +76,21 @@
         t0=t;
     }
 
+//Função para mover elementos
+
     function moverElemento(){
         this.x = this.x + this.vx*dt;
         this.vy = this.vy + this.ay*dt;
         this.y = this.y + this.vy*dt;
         this.vx = this.vx + this.ax*dt;
         }
+//Função que desenha os elementos na tela 
 
     function desenhaElemento(){
         ctx.fillStyle = this.cor;
         ctx.fillRect(this.x, this.y, 20, 20);
         }
+//Cria funções para perseguir ou evitar o alvo
 
     function perseguirAlvo(alvo){
         this.ay = 0.5*(alvo.y - this.y) - 0.2*this.vy;
@@ -95,6 +102,8 @@
         this.ax = -0.5*(alvo.x - this.x) - 0.2*this.vx;
 
     }   
+
+ //Adciona eventos e funções para reconhecer os eventos 
     
     addEventListener ("keydown", teclaPressionada);
     addEventListener ("keyup", teclaSolta);
