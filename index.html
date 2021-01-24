@@ -36,9 +36,9 @@
     }
 
     const sprites = [];
-    for (let ne = 0; ne < 20; ne++) {
+    for (let ne = 0; ne < 12; ne++) {
         let e = {
-            x :canvas.width * Math.random(),
+            x :canvas.width * (1 + Math.random()),
             vx: 0,
             ax: 0,
             y :canvas.height * Math.random(),
@@ -63,10 +63,10 @@
         desenhar: desenhaElemento,
         mover: moverElemento,
         controlar : function () {
-            if (this.x> canvas.width + 60){
-                this.x=-1000;
-                this.ax=0;
-                this.vx=200;
+            if (this.x > canvas.width + 60){
+                this.x = -1000;
+                this.ax = 0;
+                this.vx = 0;
             }
 
         }
@@ -122,8 +122,8 @@
 //Cria funções para perseguir ou evitar o alvo
 
     function perseguirAlvo(alvo){
-        this.ay = 0.5*(alvo.y - this.y) - 0.2*this.vy;
-        this.ax = 0.5*(alvo.x - this.x) - 0.2*this.vx;
+        this.ay = 100*Math.sign(alvo.y - this.y) - 0.2*this.vy;
+        this.ax = 100*Math.sign(alvo.x - this.x) - 0.2*this.vx;
 
     }   
     function evitarAlvo(alvo){
@@ -187,7 +187,7 @@ switch (event.key) {
         if (o.x === -1000) {
         o.x = p.x;
         o.y = p.y;
-        o.vx = 0;
+        o.vx = 200;
         o.ax = 100;}
 
         break;
